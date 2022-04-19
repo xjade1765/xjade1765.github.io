@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xjade1765.github.io/post/troublehooting..dockerregistrybehindnginx..unexpectedeof/</loc>
+    <lastmod>2022-04-11T22:50:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://xjade1765.github.io/post/</loc>
+    <lastmod>2022-04-11T22:50:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://xjade1765.github.io/</loc>
+    <lastmod>2022-04-11T22:50:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://xjade1765.github.io/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -9,12 +30,6 @@
   
   <url>
     <loc>https://xjade1765.github.io/tags/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://xjade1765.github.io/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
