@@ -49,8 +49,8 @@
 <meta itemprop="name" content="docker pull拉取镜像报错：unexpected EOF">
 <meta itemprop="description" content="问题现象 pull镜像有些layer层一直处于Retrying，如下 1 2 3 4 5 6 7 8 6a56b4def9c4: Retrying in 11 seconds 731bcd9b962b: Download complete b58cd78ec81d: Retrying in 11 seconds eda07c7847c3: Download complete 40ab7eabb7a4: Download complete 08888a06c9d6: Retrying in 11 seconds 8bf737cac800: Waiting 246e4dcd850f: Waiting 超"><meta itemprop="datePublished" content="2022-04-11T22:50:21+08:00" />
 <meta itemprop="dateModified" content="2022-04-11T22:50:21+08:00" />
-<meta itemprop="wordCount" content="825">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="709">
+<meta itemprop="keywords" content="docker," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="docker pull拉取镜像报错：unexpected EOF"/>
 <meta name="twitter:description" content="问题现象 pull镜像有些layer层一直处于Retrying，如下 1 2 3 4 5 6 7 8 6a56b4def9c4: Retrying in 11 seconds 731bcd9b962b: Download complete b58cd78ec81d: Retrying in 11 seconds eda07c7847c3: Download complete 40ab7eabb7a4: Download complete 08888a06c9d6: Retrying in 11 seconds 8bf737cac800: Waiting 246e4dcd850f: Waiting 超"/>
 
@@ -129,7 +129,9 @@
 
       <div class="post-meta">
         <span class="post-time"> 2022-04-11 </span>
-        
+        <div class="post-category">
+            <a href="/categories/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/"> 故障排查 </a>
+            </div>
         
       </div>
     </header>
@@ -146,7 +148,7 @@
             <li><a href="#问题现象">问题现象</a></li>
             <li><a href="#环境">环境</a></li>
             <li><a href="#排查">排查</a></li>
-            <li><a href="#总结">总结</a></li>
+            <li><a href="#解决">解决</a></li>
           </ul>
         </li>
       </ul>
@@ -218,7 +220,8 @@ drwx------.  <span class="m">2</span> root root <span class="m">4096</span> Jan 
 </div>
 </div><p>目录用户和用户组都是root，而nginx的worker进程是以nginx用户运行的，故没有权限操作相关目录。</p>
 <p>那为啥nginx进程是以nginx用户运行的，创建的目录拥有者为何是root呢？一开始以为是nginx可能以前是root身份运行，后续改回nginx用户身份，但经测试验证，此情况不会出现问题。之后经过一系列排查，发现是因为该环境同时运行了多个nginx服务，其中有一个nginx服务是以root身份运行，这样相互作用于同个目录才导致问题的出现。</p>
-<p>解决方案可以是统一让所有nginx服务以相同的身份运行，如下</p>
+<h3 id="解决">解决</h3>
+<p>可以是统一让所有nginx服务以相同的身份运行，如下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -236,8 +239,6 @@ nginx -c /xxx/nginx.conf -s reload
 </code></pre></td></tr></table>
 </div>
 </div><p>或者既然是两个独立的nginx服务，就应该指定不同的主目录/var/lib/nginx（该方案是猜想，未验证~）</p>
-<h3 id="总结">总结</h3>
-<p>一开始一直在docker-registry方面去排查，没怀疑nginx，导致浪费了不少时间。感觉自己对问题的排查定位不够高效，自己在这个过程中不够理智客观地考虑好问题的各个关节点，容易陷入到某一点里面，这个是后续需要注意的。</p>
 
     </div>
 
@@ -257,7 +258,9 @@ nginx -c /xxx/nginx.conf -s reload
   
 </div>
 <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="/tags/docker/">docker</a>
+          </div>
       <nav class="post-nav">
         
         
