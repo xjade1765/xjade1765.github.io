@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://xjade1765.github.io/sitemap.xml
